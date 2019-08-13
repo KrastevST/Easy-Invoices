@@ -1,2 +1,2 @@
 # Easy-Invoices
-Program for automated generation of invoices
+A program for automated generation of invoices
