@@ -12,7 +12,8 @@
         static void Main()
         {
             var er = new ExcelReader(@"C:\Users\Wayfahrer\Desktop\2019 Financials IT&F.xlsx", 1);
-            
+            Console.WriteLine(er.Read(2));
+            er.Close();
         }
     }
 }

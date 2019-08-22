@@ -75,7 +75,7 @@
         {
             if (ws.Cells[i, j].Value2 != null)
             {
-                return ws.Cells[i, j].Value2.Trim();
+                return ws.Cells[i, j].Value2.ToString().Trim();
             }
 
             return "";
