@@ -9,18 +9,19 @@
 
     public class ExcelReader : IReader
     {
-        private const char separatorChar = '/';
-        private string path = "";
-        private _Application excel;
-        private Workbook wb;
-        private Worksheet ws;
+        private readonly char separatorChar;
+        private readonly string path = "";
+        private readonly _Application excel;
+        private readonly Workbook wb;
+        private readonly Worksheet ws;
 
-        public ExcelReader(string path, int sheet)
+        public ExcelReader(string path, int sheet, char separator)
         {
             this.path = path;
-            excel = new _Excel.Application();
-            wb = excel.Workbooks.Open(path);
-            ws = (Worksheet)wb.Worksheets[sheet];
+            this.excel = new _Excel.Application();
+            this.wb = excel.Workbooks.Open(path);
+            this.ws = (Worksheet)wb.Worksheets[sheet];
+            this.separatorChar = separator;
         }
 
         public string Read(int startingRow)
