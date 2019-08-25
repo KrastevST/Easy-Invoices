@@ -11,22 +11,24 @@
     {
         private readonly char separatorChar;
         private readonly string path = "";
+        private readonly int startingRow;
         private readonly _Application excel;
         private readonly Workbook wb;
         private readonly Worksheet ws;
 
-        public ExcelReader(string path, int sheet, char separator)
+        public ExcelReader(string path, int sheet, char separator, int startingRow)
         {
+            this.separatorChar = separator;
             this.path = path;
+            this.startingRow = startingRow;
             this.excel = new _Excel.Application();
             this.wb = excel.Workbooks.Open(path);
             this.ws = (Worksheet)wb.Worksheets[sheet];
-            this.separatorChar = separator;
         }
 
-        public string Read(int startingRow)
+        public string Read()
         {
-            int currentRow = startingRow;
+            int currentRow = this.startingRow;
             var result = new StringBuilder();
 
             var rowAsString = this.GetRow(currentRow);

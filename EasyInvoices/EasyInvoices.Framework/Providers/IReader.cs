@@ -4,7 +4,7 @@
 
     public interface IReader
     {
-        string Read(int startingRow);
+        string Read();
         void Close();
     }
 }
