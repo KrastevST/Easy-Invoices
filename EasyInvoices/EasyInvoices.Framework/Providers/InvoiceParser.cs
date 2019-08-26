@@ -16,7 +16,7 @@
         {
             this.separatorChar = separator;
         }
-        public ICollection<Invoice> parseInvoices(string fileAsString, IPrimitiveParser parser)
+        public ICollection<Invoice> ParseAllInvoices(string fileAsString, IPrimitiveParser parser)
         {
             string separator = "" + this.separatorChar + this.separatorChar;
             // Trim to avoid empty entries
@@ -26,14 +26,14 @@
 
             foreach (var inv in separatedInvoices)
             {
-                var parsedInv = ParseInvoice(inv, parser);
+                var parsedInv = ParseInvoiceFromString(inv, parser);
                 result.Add(parsedInv);
             }
 
             return result;
         }
 
-        private Invoice ParseInvoice(string invoiceAsString, IPrimitiveParser parser)
+        private Invoice ParseInvoiceFromString(string invoiceAsString, IPrimitiveParser parser)
         {
             var invoiceAsArray = invoiceAsString.Split(new char[] { this.separatorChar }, StringSplitOptions.RemoveEmptyEntries);
             string invNum = invoiceAsArray[0];

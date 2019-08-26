@@ -17,7 +17,7 @@
             var invParser = new InvoiceParser('/');
             var result = er.Read();
             var parser = new PrimitiveParser();
-            var parsedResult = invParser.parseInvoices(result, parser);
+            var parsedResult = invParser.ParseAllInvoices(result, parser);
 
             foreach (var item in parsedResult)
             {
