@@ -24,7 +24,7 @@
             //    Console.WriteLine(item);
             //}
 
-            var inv = new Invoice("19011", "", "", 1, 1, 1);
+            var inv = new Invoice("19011", "EUr", 1.5m, 1.66m, 50m);
             var writer = new WordWriter();
             writer.SaveInvoiceToWord(@"C:\Users\Wayfahrer\Desktop\Invoice Template.doc", @"C:\Users\Wayfahrer\Desktop\Test.doc", inv);
         }

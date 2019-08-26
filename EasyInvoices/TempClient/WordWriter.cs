@@ -10,11 +10,15 @@
     public class WordWriter : IWriter
     {
         private const string numberPlaceholder = "<invnum>";
-        private const string datePlaceholder = "<invnum>";
-        private const string currencyPlaceholder = "<invnum>";
-        private const string daysPlaceholder = "<invnum>";
-        private const string ratePlaceholder = "<invnum>";
-        private const string vatPlaceholder = "<invnum>";
+        private const string datePlaceholder = "<invdate>";
+        private const string dueDatePlaceholder = "<duedate>";
+        private const string currencyPlaceholder = "<curr>";
+        private const string daysPlaceholder = "<days>";
+        private const string ratePlaceholder = "<rate>";
+        private const string vatPlaceholder = "<vat>";
+        private const string amountPlaceholder = "<amount>";
+        private const string vatamntPlaceholder = "<vatamnt>";
+        private const string totalPlaceholder = "<total>";
 
         public void SaveInvoiceToWord(object fileName, object saveAs, Invoice invoice)
         {
@@ -37,11 +41,15 @@
                 wordDoc.Activate();
 
                 this.FindAndReplace(wordApp, numberPlaceholder, invoice.InvoiceNumber);
-                //this.FindAndReplace(wordApp, datePlaceholder, invoice.InvoiceDate);
-                //this.FindAndReplace(wordApp, currencyPlaceholder, invoice.Currency);
-                //this.FindAndReplace(wordApp, daysPlaceholder, invoice.Days);
-                //this.FindAndReplace(wordApp, ratePlaceholder, invoice.Rate);
-                //this.FindAndReplace(wordApp, vatPlaceholder, invoice.Vat);
+                this.FindAndReplace(wordApp, datePlaceholder, invoice.InvoiceDate);
+                this.FindAndReplace(wordApp, dueDatePlaceholder, invoice.DueDate);
+                this.FindAndReplace(wordApp, currencyPlaceholder, invoice.Currency);
+                this.FindAndReplace(wordApp, daysPlaceholder, invoice.Days);
+                this.FindAndReplace(wordApp, ratePlaceholder, invoice.Rate);
+                this.FindAndReplace(wordApp, vatPlaceholder, invoice.Vat);
+                this.FindAndReplace(wordApp, amountPlaceholder, invoice.Amount);
+                this.FindAndReplace(wordApp, vatamntPlaceholder, invoice.VatAmount);
+                this.FindAndReplace(wordApp, totalPlaceholder, invoice.Total);
             }
             else
             {
