@@ -16,9 +16,9 @@
         private readonly Workbook wb;
         private readonly Worksheet ws;
 
-        public ExcelReader(string path, int sheet, char separator, int startingRow)
+        public ExcelReader(string path, int sheet, char separatorCh, int startingRow)
         {
-            this.separatorChar = separator;
+            this.separatorChar = separatorCh;
             this.path = path;
             this.startingRow = startingRow;
             this.excel = new _Excel.Application();
@@ -39,10 +39,12 @@
                 rowAsString = GetRow(currentRow);
             }
 
+            this.Close();
+
             return result.ToString();
         }
 
-        public void Close()
+        private void Close()
         {
             this.wb.Close();
         }
@@ -50,22 +52,23 @@
         private string GetRow(int row)
         {
             var result = new StringBuilder();
-            for (int i = row, j = 1; j <= 6; j++)
+            for (int i = row, j = 1; j <= 5; j++)
             {
                 var cell = this.GetCell(i, j);
                 if (string.IsNullOrWhiteSpace(cell))
                 {
+                    // TODO fix this
                     if (j == 1 
                         && string.IsNullOrWhiteSpace(this.GetCell(i, j + 1))
                         && string.IsNullOrWhiteSpace(this.GetCell(i, j + 2))
                         && string.IsNullOrWhiteSpace(this.GetCell(i, j + 3))
                         && string.IsNullOrWhiteSpace(this.GetCell(i, j + 4))
-                        && string.IsNullOrWhiteSpace(this.GetCell(i, j + 5))
                         )
                     {
                         return null;
                     }
                     //TODO Fix this
+                    this.Close();
                     throw new ArgumentNullException("Missing data");
                 }
                 result.Append(separatorChar + cell);

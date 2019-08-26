@@ -10,7 +10,7 @@ namespace EasyInvoices.Framework.Models
         private readonly decimal rate;
         private readonly decimal vat;
 
-        public Invoice(string invoiceNumber, string currency, decimal days, decimal rate, decimal vat)
+        public Invoice(string invoiceNumber, decimal days, decimal rate, string currency, decimal vat)
         {
             this.invoiceNumber = invoiceNumber;
             this.currency = currency;

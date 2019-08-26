@@ -5,6 +5,5 @@
     public interface IReader
     {
         string Read();
-        void Close();
     }
 }
