@@ -1,11 +1,7 @@
 ﻿namespace EasyInvoices.Framework.Providers
 {
-    using System;
-    using System.Collections.Generic;
+    using EasyInvoices.Framework.Providers.Contracts;
     using System.Globalization;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
 
     public class PrimitiveParser : IPrimitiveParser
     {

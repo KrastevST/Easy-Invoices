@@ -1,9 +1,8 @@
 ﻿namespace TempClient
 {
     using System;
-    using System.Collections.Generic;
     using System.Text;
-    using EasyInvoices.Framework.Providers;
+    using EasyInvoices.Framework.Providers.Contracts;
     using Microsoft.Office.Interop.Excel;
     using _Excel = Microsoft.Office.Interop.Excel;
 

@@ -1,7 +1,7 @@
 ﻿namespace TempClient
 {
     using EasyInvoices.Framework.Models;
-    using EasyInvoices.Framework.Providers;
+    using EasyInvoices.Framework.Providers.Contracts;
     using System;
     using System.IO;
     using System.Reflection;

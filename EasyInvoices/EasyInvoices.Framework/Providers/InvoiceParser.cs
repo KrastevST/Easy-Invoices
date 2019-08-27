@@ -1,12 +1,10 @@
 ﻿namespace EasyInvoices.Framework.Providers
 {
     using EasyInvoices.Framework.Models;
+    using EasyInvoices.Framework.Providers.Contracts;
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using System.Text.RegularExpressions;
-    using System.Threading.Tasks;
 
     public class InvoiceParser : IInvoiceParser
     {

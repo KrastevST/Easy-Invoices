@@ -1,4 +1,4 @@
-﻿namespace EasyInvoices.Framework.Providers
+﻿namespace EasyInvoices.Framework.Providers.Contracts
 {
     using EasyInvoices.Framework.Models;
     using System;
