@@ -14,10 +14,11 @@
 
         public InvoiceParser(char separator)
         {
+            // TODO char cannot be * or \
             this.separatorChar = separator;
         }
 
-        public ICollection<string> SeparateStringToInvoiceStrings(string fileAsString)
+        public IList<string> SeparateInvoiceStrings(string fileAsString)
         {
             string separator = "" + this.separatorChar + this.separatorChar;
             // Trim to avoid empty entries

@@ -29,7 +29,7 @@
         public void Start()
         {
             var fileAsString = this.reader.Read();
-            var separateInvoiceStrings = this.invParser.SeparateStringToInvoiceStrings(fileAsString);
+            var separateInvoiceStrings = this.invParser.SeparateInvoiceStrings(fileAsString);
 
             foreach (var invString in separateInvoiceStrings)
             {

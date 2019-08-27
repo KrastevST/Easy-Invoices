@@ -17,22 +17,22 @@
             var invParser = new InvoiceParser('/');
             var result = er.Read();
             var parser = new PrimitiveParser();
-            var parsedResult = invParser.SeparateStringToInvoiceStrings(result, parser);
+            var parsedResult = invParser.SeparateInvoiceStrings(result);
 
-            foreach (var item in parsedResult)
-            {
-                Console.WriteLine(item.Amount);
-                Console.WriteLine(item.Currency);
-                Console.WriteLine(item.Days);
-                Console.WriteLine(item.DueDate);
-                Console.WriteLine(item.InvoiceDate);
-                Console.WriteLine(item.InvoiceNumber);
-                Console.WriteLine(item.Rate);
-                Console.WriteLine(item.Total);
-                Console.WriteLine(item.Vat);
-                Console.WriteLine(item.VatAmount);
-                Console.WriteLine("-----------------");
-            }
+            //foreach (var item in parsedResult)
+            //{
+            //    Console.WriteLine(item.Amount);
+            //    Console.WriteLine(item.Currency);
+            //    Console.WriteLine(item.Days);
+            //    Console.WriteLine(item.DueDate);
+            //    Console.WriteLine(item.InvoiceDate);
+            //    Console.WriteLine(item.InvoiceNumber);
+            //    Console.WriteLine(item.Rate);
+            //    Console.WriteLine(item.Total);
+            //    Console.WriteLine(item.Vat);
+            //    Console.WriteLine(item.VatAmount);
+            //    Console.WriteLine("-----------------");
+            //}
 
             //var inv = new Invoice("19011", 1.5m, 1.66m, "EUr", 50m);
             //var writer = new WordWriter();
