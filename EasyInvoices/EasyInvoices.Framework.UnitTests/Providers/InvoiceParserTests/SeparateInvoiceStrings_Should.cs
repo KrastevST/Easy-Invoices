@@ -1,4 +1,4 @@
-﻿namespace EasyInvoices.Framework.UnitTests.Providers.InvoiceParser.Tests
+﻿namespace EasyInvoices.Framework.UnitTests.Providers.InvoiceParserTests
 {
     using EasyInvoices.Framework.Providers;
     using Moq;

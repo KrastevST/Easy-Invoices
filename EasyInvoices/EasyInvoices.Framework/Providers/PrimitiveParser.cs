@@ -5,12 +5,22 @@
 
     public class PrimitiveParser : IPrimitiveParser
     {
-        public decimal parseDecimal(string value)
+        public decimal? ParseDecimal(string value)
         {
             decimal result;
-            decimal.TryParse(value, NumberStyles.Any, CultureInfo.CurrentCulture, out result);
-            decimal.TryParse(value, NumberStyles.Any, CultureInfo.InvariantCulture, out result);
-            decimal.TryParse(value, NumberStyles.Any, CultureInfo.GetCultureInfo("en-GB"), out result);
+
+            if (!decimal.TryParse(value.Replace(",", "").Replace(".", "").Replace(" ", ""), NumberStyles.Number, CultureInfo.InvariantCulture, out result))
+            {
+                return null;
+            }
+
+            var splitValue = value.Split(',', '.');
+            int numsAfterDelimiter = splitValue[splitValue.Length - 1].Length;
+
+            for (int i = 0; i < numsAfterDelimiter; i++)
+            {
+                result /= 10;
+            }
 
             return result;
         }

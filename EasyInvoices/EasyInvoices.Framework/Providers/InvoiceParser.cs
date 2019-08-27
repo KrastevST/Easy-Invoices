@@ -29,10 +29,10 @@
         {
             var invoiceAsArray = invoiceAsString.Split(new char[] { this.separatorChar }, StringSplitOptions.RemoveEmptyEntries);
             string invNum = invoiceAsArray[0];
-            decimal days = parser.parseDecimal(invoiceAsArray[1]);
-            decimal rate = parser.parseDecimal(invoiceAsArray[2]);
+            decimal? days = parser.ParseDecimal(invoiceAsArray[1]);
+            decimal? rate = parser.ParseDecimal(invoiceAsArray[2]);
             string currency = invoiceAsArray[3];
-            decimal vat = parser.parseDecimal(invoiceAsArray[4].Trim('%'));
+            decimal? vat = parser.ParseDecimal(invoiceAsArray[4].Trim('%'));
 
             var parsedInvoice = new Invoice(invNum, days, rate, currency, vat);
 
