@@ -13,7 +13,7 @@
         [Test]
         void SplitTheInputStringIntoIndividualInvoices_WhenValidStringIsProvided()
         {
-
+            
         }
     }
 }

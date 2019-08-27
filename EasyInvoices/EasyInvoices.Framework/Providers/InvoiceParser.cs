@@ -17,7 +17,7 @@
             this.separatorChar = separator;
         }
 
-        public ICollection<String> SeparateStringToInvoiceStrings(string fileAsString, IPrimitiveParser parser)
+        public ICollection<string> SeparateStringToInvoiceStrings(string fileAsString)
         {
             string separator = "" + this.separatorChar + this.separatorChar;
             // Trim to avoid empty entries
