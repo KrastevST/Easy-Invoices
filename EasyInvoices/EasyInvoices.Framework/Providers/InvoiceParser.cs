@@ -8,7 +8,7 @@
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
 
-    public class InvoiceParser
+    public class InvoiceParser : IInvoiceParser
     {
         private readonly char separatorChar;
 
@@ -16,24 +16,17 @@
         {
             this.separatorChar = separator;
         }
-        public ICollection<Invoice> ParseAllInvoices(string fileAsString, IPrimitiveParser parser)
+
+        public ICollection<String> SeparateStringToInvoiceStrings(string fileAsString, IPrimitiveParser parser)
         {
             string separator = "" + this.separatorChar + this.separatorChar;
             // Trim to avoid empty entries
             var separatedInvoices = Regex.Split(fileAsString.Trim(separatorChar), separator);
 
-            var result = new List<Invoice>();
-
-            foreach (var inv in separatedInvoices)
-            {
-                var parsedInv = ParseInvoiceFromString(inv, parser);
-                result.Add(parsedInv);
-            }
-
-            return result;
+            return separatedInvoices;
         }
 
-        private Invoice ParseInvoiceFromString(string invoiceAsString, IPrimitiveParser parser)
+        public Invoice ParseInvoiceFromString(string invoiceAsString, IPrimitiveParser parser)
         {
             var invoiceAsArray = invoiceAsString.Split(new char[] { this.separatorChar }, StringSplitOptions.RemoveEmptyEntries);
             string invNum = invoiceAsArray[0];

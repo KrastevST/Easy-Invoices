@@ -1,5 +1,6 @@
 ﻿namespace EasyInvoices.Framework.Providers
 {
+    using EasyInvoices.Framework.Models;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -8,5 +9,6 @@
 
     public interface IWriter
     {
+        void SaveInvoiceToWord(object fileName, object saveAs, Invoice invoice);
     }
 }
