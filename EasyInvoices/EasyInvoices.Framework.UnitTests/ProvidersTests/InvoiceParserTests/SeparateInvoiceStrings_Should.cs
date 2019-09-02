@@ -1,4 +1,4 @@
-﻿namespace EasyInvoices.Framework.UnitTests.Providers.InvoiceParserTests
+﻿namespace EasyInvoices.Framework.UnitTests.ProvidersTests.InvoiceParserTests
 {
     using EasyInvoices.Framework.Providers;
     using Moq;
@@ -16,10 +16,10 @@
         [TestCase("&&str&1&&str&2&&str&3")]
         [TestCase("str&1&&str&2&&str&3&&")]
         [TestCase("&&str&1&&str&2&&str&3&&")]
-        public void SplitTheInputByDoubleChar_WhenCorrectCharIsProvided(string input)
+        public void SplitTheInputStringIntoIndividualInvoiceStrings_WhenTheCorrectSeparatingCharIsProvided(string input)
         {
             char separator = '/';
-            // To test different chars
+            // Modify the input for faster testing of different separators
             string updatedInput = input.Replace('&', separator);
             string[] invoiceStrings = new string[] { $"str{separator}1", $"str{separator}2", $"str{separator}3"};
 

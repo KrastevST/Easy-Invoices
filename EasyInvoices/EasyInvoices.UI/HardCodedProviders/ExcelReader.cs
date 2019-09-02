@@ -1,4 +1,4 @@
-﻿namespace TempClient
+﻿namespace EasyInvoices.Client.HardCodedProviders
 {
     using System;
     using System.Text;

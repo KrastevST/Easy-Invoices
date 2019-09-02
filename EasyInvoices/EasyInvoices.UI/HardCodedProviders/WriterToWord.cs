@@ -1,4 +1,4 @@
-﻿namespace TempClient
+﻿namespace EasyInvoices.Client.HardCodedProviders
 {
     using EasyInvoices.Framework.Models;
     using EasyInvoices.Framework.Providers.Contracts;
@@ -7,7 +7,7 @@
     using System.Reflection;
     using Word = Microsoft.Office.Interop.Word;
 
-    public class WordWriter : IWriter
+    public class WriterToWord : IWriterToWord
     {
         private const string numberPlaceholder = "<invnum>";
         private const string datePlaceholder = "<invdate>";

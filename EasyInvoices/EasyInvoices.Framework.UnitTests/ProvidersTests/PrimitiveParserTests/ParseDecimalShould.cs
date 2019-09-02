@@ -1,4 +1,4 @@
-﻿namespace EasyInvoices.Framework.UnitTests.Providers.PrimitiveParserTests
+﻿namespace EasyInvoices.Framework.UnitTests.ProvidersTests.PrimitiveParserTests
 {
     using EasyInvoices.Framework.Providers;
     using NUnit.Framework;
@@ -17,7 +17,7 @@
         [TestCase("10566.01")]
         [TestCase("10 566.01")]
         [TestCase("10,566.01")]
-        public void ParseDecimalRegardlessOfFormat_WhenValidStringIsProvided(string input)
+        public void ConvertStringToDecimalRegardlessOfFormat_WhenValidStringIsProvided(string input)
         {
             var parser = new PrimitiveParser();
 
