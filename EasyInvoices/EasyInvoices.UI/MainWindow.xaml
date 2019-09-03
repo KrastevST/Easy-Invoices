@@ -30,7 +30,8 @@
         <TextBlock Grid.Row="1" Grid.Column="1" Text="Select an Excel file:" Margin="10" Grid.ColumnSpan="3" />
         <TextBox x:Name="selectFileValue" Grid.Row="1" Grid.Column="4" Width="100" Margin="0, 10"
                  HorizontalAlignment="Left"/>
-        <Button x:Name="selectFileBtn" Grid.Row="1" Grid.Column="5" Margin="10" Width="30" Content="..." />
+        <Button x:Name="selectFileBtn" Grid.Row="1" Grid.Column="5" Margin="10" Width="30" Content="..." 
+                Click="SelectFileBtn_Click"/>
 
         <!-- Row 2 -->
         <TextBlock Grid.Row="2" Grid.Column="1" Text="Sheet" Margin="10" />

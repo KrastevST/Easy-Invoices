@@ -27,6 +27,18 @@ namespace EasyInvoices.UI
 
         private void SelectFileBtn_Click(object sender, RoutedEventArgs e)
         {
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog
+            {
+                DefaultExt = ".xlsx",
+                Filter = "Excel Files|*.xls;*.xlsx;*.xlsm"
+            };
+
+            bool? result = dlg.ShowDialog();
+
+            if (result == true)
+            {
+                selectFileValue.Text = dlg.FileName;
+            }
 
         }
 
