@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyInvoices.Framework", "E
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyInvoices.Framework.UnitTests", "EasyInvoices.Framework.UnitTests\EasyInvoices.Framework.UnitTests.csproj", "{790E3848-1E8A-4C03-ABD4-21F3B5B16718}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyInvoices.Client", "EasyInvoices.UI\EasyInvoices.Client.csproj", "{D26B2128-BC91-4182-B318-C8224DF1F05A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyInvoices.UI", "EasyInvoices.UI\EasyInvoices.UI.csproj", "{D26B2128-BC91-4182-B318-C8224DF1F05A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

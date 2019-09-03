@@ -1,4 +1,4 @@
-﻿namespace EasyInvoices.Client.HardCodedProviders
+﻿namespace EasyInvoices.UI.HardCodedProviders
 {
     using System;
     using System.Text;

@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace EasyInvoices.Client
+namespace EasyInvoices.UI
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -25,6 +25,24 @@ namespace EasyInvoices.Client
             InitializeComponent();
         }
 
+        private void SelectFileBtn_Click(object sender, RoutedEventArgs e)
+        {
 
+        }
+
+        private void ChoseDestinationBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void GenerateInvoicesBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void EditTemplateBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
