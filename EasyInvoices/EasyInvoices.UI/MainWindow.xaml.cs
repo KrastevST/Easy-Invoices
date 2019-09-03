@@ -27,24 +27,27 @@ namespace EasyInvoices.UI
 
         private void SelectFileBtn_Click(object sender, RoutedEventArgs e)
         {
-            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog
+            var dialog = new Microsoft.Win32.OpenFileDialog
             {
                 DefaultExt = ".xlsx",
                 Filter = "Excel Files|*.xls;*.xlsx;*.xlsm"
             };
 
-            bool? result = dlg.ShowDialog();
+            bool? result = dialog.ShowDialog();
 
             if (result == true)
             {
-                selectFileValue.Text = dlg.FileName;
+                selectFileValue.Text = dialog.FileName;
             }
-
         }
 
         private void ChoseDestinationBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            using (var dialog = new System.Windows.Forms.FolderBrowserDialog())
+            {
+                var result = dialog.ShowDialog();
+                chooseDestinationValue.Text = dialog.SelectedPath;
+            }
         }
 
         private void GenerateInvoicesBtn_Click(object sender, RoutedEventArgs e)
