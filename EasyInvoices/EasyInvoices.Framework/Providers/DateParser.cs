@@ -14,8 +14,9 @@
         {
             string year = invoice.InvoiceNumber.Substring(0, 2);
             string month = invoice.InvoiceNumber.Substring(2, 2);
+            string num = invoice.InvoiceNumber.Substring(4, 1);
 
-            string result =  $"{month} {year}";
+            string result =  $"{month}-{year} {num}";
 
             return result;
         }

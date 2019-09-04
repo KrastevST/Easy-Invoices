@@ -20,19 +20,21 @@
         private const string vatamntPlaceholder = "<vatamnt>";
         private const string totalPlaceholder = "<total>";
 
-        public void SaveInvoiceToWord(object fileName, object saveNameTemplate, Invoice invoice)
+        public void SaveInvoiceToWord(string invTemplatePath, object saveAs, Invoice invoice)
         {
             Word.Application wordApp = new Word.Application();
             object missing = Missing.Value;
             Word.Document wordDoc = null;
 
-            if (File.Exists((string)fileName))
+            if (File.Exists(invTemplatePath))
             {
+                object fullPath = Path.GetFullPath(invTemplatePath);
+
                 object readOnly = false;
                 object isVisible = false;
                 wordApp.Visible = false;
 
-                wordDoc = wordApp.Documents.Open(ref fileName, ref missing, ref readOnly,
+                wordDoc = wordApp.Documents.Open(ref fullPath, ref missing, ref readOnly,
                                         ref missing, ref missing, ref missing,
                                         ref missing, ref missing, ref missing,
                                         ref missing, ref missing, ref missing,
@@ -57,7 +59,7 @@
                 throw new ArgumentNullException("File not found");
             }
 
-            wordDoc.SaveAs2(ref saveNameTemplate, ref missing, ref missing, ref missing,
+            wordDoc.SaveAs2(ref saveAs, ref missing, ref missing, ref missing,
                            ref missing, ref missing, ref missing,
                            ref missing, ref missing, ref missing,
                            ref missing, ref missing, ref missing,

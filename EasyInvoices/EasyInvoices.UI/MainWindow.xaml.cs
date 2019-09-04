@@ -25,8 +25,8 @@ namespace EasyInvoices.UI
     public partial class MainWindow : Window
     {
         private const char separator = '/';
-        private const string templateLocation = "";
-        private const string saveNameTemplate = "Invoice_{0}_{1}.doc";
+        private const string invoiceTemplatePath = "../../Invoice Template.doc";
+        private const string fileNameTemplate = "Invoice_{0}_{1}.doc";
 
         public MainWindow()
         {
@@ -64,6 +64,8 @@ namespace EasyInvoices.UI
             // TODO - validate
             int sheet = int.Parse(sheetValue.Text);
             int row = int.Parse(rowValue.Text);
+            string saveDirectory = chooseDestinationValue.Text;
+            string fullSavePath = $"{saveDirectory}\\{fileNameTemplate}";
 
             IInvoiceParser invParser = new InvoiceParser(separator);
             IPrimitiveParser primParser = new PrimitiveParser();
@@ -71,7 +73,7 @@ namespace EasyInvoices.UI
             IReader reader = new ExcelReader(readPath, sheet, row, separator);
             IWriterToWord writer = new WriterToWord();
 
-            var engine = new Engine(invParser, primParser, dateParser, reader, writer, templateLocation, saveNameTemplate);
+            var engine = new Engine(invParser, primParser, dateParser, reader, writer, invoiceTemplatePath, fullSavePath);
             engine.Start();
 
 

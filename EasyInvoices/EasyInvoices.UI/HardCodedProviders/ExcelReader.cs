@@ -14,10 +14,10 @@
         private readonly Workbook wb;
         private readonly Worksheet ws;
 
-        public ExcelReader(string readPath, int sheet, int startingRow, char separatorCh)
+        public ExcelReader(string readFilePath, int sheet, int startingRow, char separatorCh)
         {
             this.excel = new _Excel.Application();
-            this.wb = excel.Workbooks.Open(readPath);
+            this.wb = excel.Workbooks.Open(readFilePath);
             this.ws = (Worksheet)wb.Worksheets[sheet];
             this.startingRow = startingRow;
             this.separatorChar = separatorCh;
@@ -44,6 +44,8 @@
         private void Close()
         {
             this.wb.Close();
+            this.excel.Quit();
+            System.Runtime.InteropServices.Marshal.ReleaseComObject(excel);
         }
 
         private string GetRow(int row)
