@@ -1,4 +1,8 @@
-﻿using System;
+﻿using EasyInvoices.Framework;
+using EasyInvoices.Framework.Providers;
+using EasyInvoices.Framework.Providers.Contracts;
+using EasyInvoices.UI.HardCodedProviders;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +24,10 @@ namespace EasyInvoices.UI
     /// </summary>
     public partial class MainWindow : Window
     {
+        private const char separator = '/';
+        private const string templateLocation = "";
+        private const string saveNameTemplate = "Invoice_{0}_{1}.doc";
+
         public MainWindow()
         {
             InitializeComponent();
@@ -52,7 +60,23 @@ namespace EasyInvoices.UI
 
         private void GenerateInvoicesBtn_Click(object sender, RoutedEventArgs e)
         {
+            string readPath = selectFileValue.Text;
+            // TODO - validate
+            int sheet = int.Parse(sheetValue.Text);
+            int row = int.Parse(rowValue.Text);
 
+            IInvoiceParser invParser = new InvoiceParser(separator);
+            IPrimitiveParser primParser = new PrimitiveParser();
+            IDateParser dateParser = new DateParser();
+            IReader reader = new ExcelReader(readPath, sheet, row, separator);
+            IWriterToWord writer = new WriterToWord();
+
+            var engine = new Engine(invParser, primParser, dateParser, reader, writer, templateLocation, saveNameTemplate);
+            engine.Start();
+
+
+            selectFileValue.Text = string.Empty;
+            chooseDestinationValue.Text = string.Empty;
         }
 
         private void EditTemplateBtn_Click(object sender, RoutedEventArgs e)

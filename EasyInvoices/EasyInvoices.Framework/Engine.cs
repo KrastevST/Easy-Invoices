@@ -10,16 +10,18 @@
         private readonly IReader reader;
         private readonly IWriterToWord writer;
         private readonly string templatePath;
-        private readonly string savePathTemplate;
+        private readonly string saveNameTemplate;
+        private readonly IDateParser dateParser;
 
-        public Engine(IInvoiceParser invParser, IPrimitiveParser primParser, IReader reader, IWriterToWord writer, string templatePath, string savePathTemplate)
+        public Engine(IInvoiceParser invParser, IPrimitiveParser primParser, IDateParser dateParser, IReader reader, IWriterToWord writer, string templatePath, string saveNameTemplate)
         {
             this.invParser = invParser;
             this.primParser = primParser;
             this.reader = reader;
             this.writer = writer;
             this.templatePath = templatePath;
-            this.savePathTemplate = savePathTemplate;
+            this.saveNameTemplate = saveNameTemplate;
+            this.dateParser = dateParser;
         }
 
         public void Start()
@@ -30,7 +32,10 @@
             foreach (var invString in separateInvoiceStrings)
             {
                 var invoice = this.invParser.ParseInvoiceFromString(invString, this.primParser);
-                this.writer.SaveInvoiceToWord(this.templatePath, savePathTemplate, invoice);
+                string date = dateParser.ParseDateFromInvoice(invoice);
+                // TODO - add company. 
+                string saveName = string.Format(saveNameTemplate, "Atradius", date);
+                this.writer.SaveInvoiceToWord(this.templatePath, this.saveNameTemplate, invoice);
             }
         }
     }
