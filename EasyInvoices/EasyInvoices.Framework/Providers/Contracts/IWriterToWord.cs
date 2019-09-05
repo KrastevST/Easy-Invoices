@@ -4,6 +4,6 @@
 
     public interface IWriterToWord
     {
-        void SaveInvoiceToWord(string invTemplatePath, object saveAs, Invoice invoice);
+        void SaveInvoiceToWord(string invTemplatePath, object saveAs, IInvoice invoice);
     }
 }

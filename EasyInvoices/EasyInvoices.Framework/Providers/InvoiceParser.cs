@@ -25,7 +25,7 @@
             return separatedInvoices;
         }
 
-        public Invoice ParseInvoiceFromString(string invoiceAsString, IPrimitiveParser parser)
+        public IInvoice ParseInvoiceFromString(string invoiceAsString, IPrimitiveParser parser)
         {
             var invoiceAsArray = invoiceAsString.Split(new char[] { this.separatorChar }, StringSplitOptions.RemoveEmptyEntries);
             string invNum = invoiceAsArray[0];

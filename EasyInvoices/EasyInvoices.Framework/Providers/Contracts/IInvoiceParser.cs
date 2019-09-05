@@ -10,6 +10,6 @@
     public interface IInvoiceParser
     {
         IList<string> SeparateInvoiceStrings(string fileAsString);
-        Invoice ParseInvoiceFromString(string invoiceAsString, IPrimitiveParser parser);
+        IInvoice ParseInvoiceFromString(string invoiceAsString, IPrimitiveParser parser);
     }
 }

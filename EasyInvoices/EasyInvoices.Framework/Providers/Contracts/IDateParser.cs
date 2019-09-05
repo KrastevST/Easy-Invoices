@@ -9,6 +9,6 @@
 
     public interface IDateParser
     {
-        string ParseDateFromInvoice(Invoice invoice);
+        string ParseDateFromInvoice(IInvoice invoice);
     }
 }

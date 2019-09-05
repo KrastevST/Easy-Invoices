@@ -20,7 +20,7 @@
         private const string vatamntPlaceholder = "<vatamnt>";
         private const string totalPlaceholder = "<total>";
 
-        public void SaveInvoiceToWord(string invTemplatePath, object saveAs, Invoice invoice)
+        public void SaveInvoiceToWord(string invTemplatePath, object saveAs, IInvoice invoice)
         {
             Word.Application wordApp = new Word.Application();
             object missing = Missing.Value;

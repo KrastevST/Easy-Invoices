@@ -27,6 +27,8 @@ namespace EasyInvoices.UI
         private const char separator = '/';
         private const string invoiceTemplatePath = "../../Invoice Template.doc";
         private const string fileNameTemplate = "Invoice_{0}_{1}.doc";
+        private const string defaultSheet = "1";
+        private const string defaultRow = "2";
 
         public MainWindow()
         {
@@ -79,6 +81,8 @@ namespace EasyInvoices.UI
 
             selectFileValue.Text = string.Empty;
             chooseDestinationValue.Text = string.Empty;
+            sheetValue.Text = defaultSheet;
+            rowValue.Text = defaultRow;
         }
 
         private void EditTemplateBtn_Click(object sender, RoutedEventArgs e)

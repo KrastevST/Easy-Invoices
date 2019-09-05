@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ProvidersTests\DateParserTests\ParseDateFromInvoice_Should.cs" />
     <Compile Include="ProvidersTests\InvoiceParserTests\SeparateInvoiceStrings_Should.cs" />
     <Compile Include="ProvidersTests\PrimitiveParserTests\ParseDecimalShould.cs" />
   </ItemGroup>

@@ -2,7 +2,7 @@
 
 namespace EasyInvoices.Framework.Models
 {
-    public class Invoice
+    public class Invoice : IInvoice
     {
         private readonly string invoiceNumber;
         private readonly string currency;

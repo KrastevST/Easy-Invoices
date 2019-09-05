@@ -1,5 +1,6 @@
 ﻿namespace EasyInvoices.Framework
 {
+    using EasyInvoices.Framework.Models;
     using EasyInvoices.Framework.Providers;
     using EasyInvoices.Framework.Providers.Contracts;
 
@@ -31,7 +32,7 @@
 
             foreach (var invString in separateInvoiceStrings)
             {
-                var invoice = this.invParser.ParseInvoiceFromString(invString, this.primParser);
+                IInvoice invoice = this.invParser.ParseInvoiceFromString(invString, this.primParser);
                 string date = dateParser.ParseDateFromInvoice(invoice);
                 // TODO - add company. 
                 string savePath = string.Format(this.saveNameTemplate, "Atradius", date);
