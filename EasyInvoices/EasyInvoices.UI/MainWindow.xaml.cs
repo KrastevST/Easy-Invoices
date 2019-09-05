@@ -65,9 +65,12 @@ namespace EasyInvoices.UI
             string readPath = selectFileValue.Text;
             // TODO - validate
             int sheet = int.Parse(sheetValue.Text);
+            // TODO - validate
             int row = int.Parse(rowValue.Text);
             string saveDirectory = chooseDestinationValue.Text;
             string fullSavePath = $"{saveDirectory}\\{fileNameTemplate}";
+            // TODO - validate (no unalowed chars for filenames)
+            string company = companyNameValue.Text;
 
             IInvoiceParser invParser = new InvoiceParser(separator);
             IPrimitiveParser primParser = new PrimitiveParser();
@@ -75,7 +78,7 @@ namespace EasyInvoices.UI
             IReader reader = new ExcelReader(readPath, sheet, row, separator);
             IWriterToWord writer = new WriterToWord();
 
-            var engine = new Engine(invParser, primParser, dateParser, reader, writer, invoiceTemplatePath, fullSavePath);
+            var engine = new Engine(invParser, primParser, dateParser, reader, writer, invoiceTemplatePath, fullSavePath, company);
             engine.Start();
 
 

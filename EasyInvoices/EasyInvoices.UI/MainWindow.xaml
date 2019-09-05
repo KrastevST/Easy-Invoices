@@ -21,13 +21,13 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
         
         <!-- Row 1 -->
-        <TextBlock Grid.Row="1" Grid.Column="1" Text="Select an Excel file:" Margin="10" Grid.ColumnSpan="3" />
+        <TextBlock Grid.Row="1" Grid.Column="1" Text="Select an Excel file :" Margin="10" Grid.ColumnSpan="3" />
         <TextBox x:Name="selectFileValue" Grid.Row="1" Grid.Column="4" Width="100" Margin="0, 10"
                  HorizontalAlignment="Left"/>
         <Button x:Name="selectFileBtn" Grid.Row="1" Grid.Column="5" Margin="10" Width="30" Content="..." 
@@ -42,17 +42,22 @@
                  Width="40" />
 
         <!-- Row 3 -->
-        <TextBlock Grid.Row="3" Grid.Column="1" Text="Choose a destination folder:" Margin="10" Grid.ColumnSpan="3" />
+        <TextBlock Grid.Row="3" Grid.Column="1" Text="Choose a destination folder :" Margin="10" Grid.ColumnSpan="3" />
         <TextBox x:Name="chooseDestinationValue" Grid.Row="3" Grid.Column="4" Width="100" Margin="0, 10" 
                 HorizontalAlignment="Left" />
         <Button x:Name="choseDestinationBtn" Grid.Row="3" Grid.Column="5" Margin="10" Width="30" Content="..." 
                 Click="ChoseDestinationBtn_Click" />
 
         <!-- Row 4 -->
-        <Button x:Name="generateInvoicesBtn" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" Margin="10" 
+        <TextBlock Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" Text="Company name :" Margin="10"/>
+        <TextBox x:Name="companyNameValue" Grid.Row="4" Grid.Column="4" Margin="0, 10" HorizontalAlignment="Left" Width="180" 
+                Grid.ColumnSpan="3"/>
+
+        <!-- Row 5 -->
+        <Button x:Name="generateInvoicesBtn" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3" Margin="10" 
                 Height="70" Width="170" Content="Generate Invoices" Click="GenerateInvoicesBtn_Click" />
         
-        <Button x:Name="editTemplateBtn" Grid.Row="4" Grid.Column="4" Grid.ColumnSpan="3" Height="70"
+        <Button x:Name="editTemplateBtn" Grid.Row="5" Grid.Column="4" Grid.ColumnSpan="3" Height="70"
                 Width="170" Padding="10" Content="Edit Template" Click="EditTemplateBtn_Click" />
     </Grid>
 </Window>
