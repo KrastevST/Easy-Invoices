@@ -4,6 +4,7 @@ using EasyInvoices.Framework.Providers.Contracts;
 using EasyInvoices.UI.HardCodedProviders;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -90,6 +91,17 @@ namespace EasyInvoices.UI
 
         private void EditTemplateBtn_Click(object sender, RoutedEventArgs e)
         {
+            string fullPath;
+
+            if (File.Exists(invoiceTemplatePath))
+            {
+                fullPath = System.IO.Path.GetFullPath(invoiceTemplatePath);
+                System.Diagnostics.Process.Start(fullPath);
+            }
+            else
+            {
+                MessageBox.Show("Template file could not be found.");
+            }
 
         }
     }
