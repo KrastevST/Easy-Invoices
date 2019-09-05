@@ -55,8 +55,7 @@
             }
             else
             {
-                // TODO MesageBox.Show("File not Found!");
-                throw new ArgumentNullException("File not found");
+                throw new FileNotFoundException("File not found", invTemplatePath);
             }
 
             wordDoc.SaveAs2(ref saveAs, ref missing, ref missing, ref missing,

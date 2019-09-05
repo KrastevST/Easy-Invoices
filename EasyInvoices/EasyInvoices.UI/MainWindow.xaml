@@ -27,7 +27,7 @@
         </Grid.RowDefinitions>
         
         <!-- Row 1 -->
-        <TextBlock Grid.Row="1" Grid.Column="1" Text="Select an Excel file :" Margin="10" Grid.ColumnSpan="3" />
+        <TextBlock Grid.Row="1" Grid.Column="1" Text="Select an Excel file:" Margin="10" Grid.ColumnSpan="3" />
         <TextBox x:Name="selectFileValue" Grid.Row="1" Grid.Column="4" Width="100" Margin="0, 10"
                  HorizontalAlignment="Left"/>
         <Button x:Name="selectFileBtn" Grid.Row="1" Grid.Column="5" Margin="10" Width="30" Content="..." 
@@ -42,14 +42,14 @@
                  Width="40" />
 
         <!-- Row 3 -->
-        <TextBlock Grid.Row="3" Grid.Column="1" Text="Choose a destination folder :" Margin="10" Grid.ColumnSpan="3" />
-        <TextBox x:Name="chooseDestinationValue" Grid.Row="3" Grid.Column="4" Width="100" Margin="0, 10" 
+        <TextBlock Grid.Row="3" Grid.Column="1" Text="Select a destination folder:" Margin="10" Grid.ColumnSpan="3" />
+        <TextBox x:Name="selectDestinationValue" Grid.Row="3" Grid.Column="4" Width="100" Margin="0, 10" 
                 HorizontalAlignment="Left" />
-        <Button x:Name="choseDestinationBtn" Grid.Row="3" Grid.Column="5" Margin="10" Width="30" Content="..." 
-                Click="ChoseDestinationBtn_Click" />
+        <Button x:Name="selectDestinationBtn" Grid.Row="3" Grid.Column="5" Margin="10" Width="30" Content="..." 
+                Click="SelectDestinationBtn_Click" />
 
         <!-- Row 4 -->
-        <TextBlock Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" Text="Company name :" Margin="10"/>
+        <TextBlock Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" Text="Company name:" Margin="10"/>
         <TextBox x:Name="companyNameValue" Grid.Row="4" Grid.Column="4" Margin="0, 10" HorizontalAlignment="Left" Width="180" 
                 Grid.ColumnSpan="3"/>
 

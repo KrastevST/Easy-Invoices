@@ -2,6 +2,7 @@
 using EasyInvoices.Framework.Providers;
 using EasyInvoices.Framework.Providers.Contracts;
 using EasyInvoices.UI.HardCodedProviders;
+using EasyInvoices.UI.Utils;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -52,25 +53,34 @@ namespace EasyInvoices.UI
             }
         }
 
-        private void ChoseDestinationBtn_Click(object sender, RoutedEventArgs e)
+        private void SelectDestinationBtn_Click(object sender, RoutedEventArgs e)
         {
             using (var dialog = new System.Windows.Forms.FolderBrowserDialog())
             {
                 var result = dialog.ShowDialog();
-                chooseDestinationValue.Text = dialog.SelectedPath;
+                selectDestinationValue.Text = dialog.SelectedPath;
             }
         }
 
         private void GenerateInvoicesBtn_Click(object sender, RoutedEventArgs e)
         {
+            var validator = new InputValidator();
+            if (validator.IsValidInput(
+                selectFileValue.Text,
+                sheetValue.Text,
+                rowValue.Text,
+                selectDestinationValue.Text,
+                companyNameValue.Text) == false)
+            {
+                return;
+            }
+            
+
             string readPath = selectFileValue.Text;
-            // TODO - validate
             int sheet = int.Parse(sheetValue.Text);
-            // TODO - validate
             int row = int.Parse(rowValue.Text);
-            string saveDirectory = chooseDestinationValue.Text;
-            string fullSavePath = $"{saveDirectory}\\{fileNameTemplate}";
-            // TODO - validate (no unalowed chars for filenames)
+            string savePathDir = selectDestinationValue.Text;
+            string fullSavePath = $"{savePathDir}\\{fileNameTemplate}";
             string company = companyNameValue.Text;
 
             IInvoiceParser invParser = new InvoiceParser(separator);
@@ -82,9 +92,10 @@ namespace EasyInvoices.UI
             var engine = new Engine(invParser, primParser, dateParser, reader, writer, invoiceTemplatePath, fullSavePath, company);
             engine.Start();
 
+            MessageBox.Show("Invoices created successfully.");
 
             selectFileValue.Text = string.Empty;
-            chooseDestinationValue.Text = string.Empty;
+            selectDestinationValue.Text = string.Empty;
             sheetValue.Text = defaultSheet;
             rowValue.Text = defaultRow;
         }
