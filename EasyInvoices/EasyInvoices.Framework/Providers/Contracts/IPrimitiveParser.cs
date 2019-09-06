@@ -6,7 +6,7 @@
     using System.Text;
     using System.Threading.Tasks;
 
-    public interface IPrimitiveParser
+    public interface IDecimalParser
     {
         decimal? ParseDecimal(string value);
     }

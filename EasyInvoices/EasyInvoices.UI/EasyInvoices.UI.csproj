@@ -56,7 +56,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="HardCodedProviders\WriterToWord.cs" />
+    <Compile Include="ReferenceDependantProviders\WriterToWord.cs" />
     <Compile Include="Utils\InputValidator.cs" />
     <Compile Include="Utils\IValidator.cs" />
     <Page Include="MainWindow.xaml">
@@ -67,7 +67,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="HardCodedProviders\ExcelReader.cs" />
+    <Compile Include="ReferenceDependantProviders\ExcelReader.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

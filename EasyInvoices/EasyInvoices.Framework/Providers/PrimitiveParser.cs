@@ -3,7 +3,7 @@
     using EasyInvoices.Framework.Providers.Contracts;
     using System.Globalization;
 
-    public class PrimitiveParser : IPrimitiveParser
+    public class DecimalParser : IDecimalParser
     {
         public decimal? ParseDecimal(string value)
         {

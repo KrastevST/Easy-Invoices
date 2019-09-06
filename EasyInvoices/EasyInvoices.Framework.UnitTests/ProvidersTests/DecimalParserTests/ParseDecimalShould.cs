@@ -1,4 +1,4 @@
-﻿namespace EasyInvoices.Framework.UnitTests.ProvidersTests.PrimitiveParserTests
+﻿namespace EasyInvoices.Framework.UnitTests.ProvidersTests.DecimalParserTests
 {
     using EasyInvoices.Framework.Providers;
     using NUnit.Framework;
@@ -19,7 +19,7 @@
         [TestCase("10,566.01")]
         public void ConvertStringToDecimalRegardlessOfFormat_WhenValidStringIsProvided(string input)
         {
-            var parser = new PrimitiveParser();
+            var parser = new DecimalParser();
 
             var result = parser.ParseDecimal(input);
 

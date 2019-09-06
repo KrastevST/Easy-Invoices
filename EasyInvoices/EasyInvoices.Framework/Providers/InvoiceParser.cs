@@ -8,31 +8,30 @@
 
     public class InvoiceParser : IInvoiceParser
     {
-        private readonly char separatorChar;
+        private readonly char separatorCh;
 
         public InvoiceParser(char separator)
         {
-            // TODO char cannot be * or \
-            this.separatorChar = separator;
+            this.separatorCh = separator;
         }
 
-        public IList<string> SeparateInvoiceStrings(string fileAsString)
+        public IList<string> SplitInvoices(string fileAsString)
         {
-            string separator = "" + this.separatorChar + this.separatorChar;
+            string separatorStr = "" + this.separatorCh + this.separatorCh;
             // Trim to avoid empty entries
-            var separatedInvoices = Regex.Split(fileAsString.Trim(separatorChar), separator);
+            var separatedInvoices = Regex.Split(fileAsString.Trim(this.separatorCh), separatorStr);
 
             return separatedInvoices;
         }
 
-        public IInvoice ParseInvoiceFromString(string invoiceAsString, IPrimitiveParser parser)
+        public IInvoice ParseInvoice(string invoiceAsStr, IDecimalParser parser)
         {
-            var invoiceAsArray = invoiceAsString.Split(new char[] { this.separatorChar }, StringSplitOptions.RemoveEmptyEntries);
-            string invNum = invoiceAsArray[0];
-            decimal? days = parser.ParseDecimal(invoiceAsArray[1]);
-            decimal? rate = parser.ParseDecimal(invoiceAsArray[2]);
-            string currency = invoiceAsArray[3];
-            decimal? vat = parser.ParseDecimal(invoiceAsArray[4].Trim('%'));
+            var invoiceAsArrOfStr = invoiceAsStr.Split(new char[] { this.separatorCh }, StringSplitOptions.RemoveEmptyEntries);
+            string invNum = invoiceAsArrOfStr[0];
+            decimal? days = parser.ParseDecimal(invoiceAsArrOfStr[1]);
+            decimal? rate = parser.ParseDecimal(invoiceAsArrOfStr[2]);
+            string currency = invoiceAsArrOfStr[3];
+            decimal? vat = parser.ParseDecimal(invoiceAsArrOfStr[4].Trim('%'));
 
             var parsedInvoice = new Invoice(invNum, days, rate, currency, vat);
 

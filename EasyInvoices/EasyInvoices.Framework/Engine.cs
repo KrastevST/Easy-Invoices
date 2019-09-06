@@ -3,25 +3,27 @@
     using EasyInvoices.Framework.Models;
     using EasyInvoices.Framework.Providers;
     using EasyInvoices.Framework.Providers.Contracts;
+    using System.Collections.Generic;
 
     public class Engine
     {
         private readonly IInvoiceParser invParser;
-        private readonly IPrimitiveParser primParser;
+        private readonly IDecimalParser primParser;
         private readonly IDateParser dateParser;
         private readonly IReader reader;
-        private readonly IWriterToWord writer;
-        private readonly string invoiceTemplatePath;
+        private readonly IDocWriter writer;
+        private readonly string DocTemplatePath;
         private readonly string saveNameTemplate;
         private readonly string company;
 
-        public Engine(IInvoiceParser invParser, IPrimitiveParser primParser, IDateParser dateParser, IReader reader, IWriterToWord writer, string invoiceTemplatePath, string saveNameTemplate, string company)
+        // TODO - check for nulls
+        public Engine(IInvoiceParser invParser, IDecimalParser primParser, IDateParser dateParser, IReader reader, IDocWriter writer, string docTemplatePath, string saveNameTemplate, string company)
         {
             this.invParser = invParser;
             this.primParser = primParser;
             this.reader = reader;
             this.writer = writer;
-            this.invoiceTemplatePath = invoiceTemplatePath;
+            this.DocTemplatePath = docTemplatePath;
             this.saveNameTemplate = saveNameTemplate;
             this.dateParser = dateParser;
             this.company = company;
@@ -29,17 +31,16 @@
 
         public void Start()
         {
-            var fileAsString = this.reader.Read();
-            var separateInvoiceStrings = this.invParser.SeparateInvoiceStrings(fileAsString);
+            string fileAsString = this.reader.Read();
+            IList<string> splitInvoices = this.invParser.SplitInvoices(fileAsString);
 
-            foreach (var invString in separateInvoiceStrings)
+            foreach (string invAsStr in splitInvoices)
             {
-                IInvoice invoice = this.invParser.ParseInvoiceFromString(invString, this.primParser);
-                string date = dateParser.ParseDateFromInvoice(invoice);
-                // TODO - add company. 
+                IInvoice parsedInv = this.invParser.ParseInvoice(invAsStr, this.primParser);
+                string date = dateParser.ParseInvoiceDate(parsedInv);
                 string savePath = string.Format(this.saveNameTemplate, this.company, date);
 
-                this.writer.SaveInvoiceToWord(this.invoiceTemplatePath, savePath, invoice);
+                this.writer.SaveToWord(this.DocTemplatePath, savePath, parsedInv);
             }
         }
     }

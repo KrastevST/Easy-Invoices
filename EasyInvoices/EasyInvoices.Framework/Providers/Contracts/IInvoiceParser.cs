@@ -9,7 +9,7 @@
 
     public interface IInvoiceParser
     {
-        IList<string> SeparateInvoiceStrings(string fileAsString);
-        IInvoice ParseInvoiceFromString(string invoiceAsString, IPrimitiveParser parser);
+        IList<string> SplitInvoices(string fileAsString);
+        IInvoice ParseInvoice(string invoiceAsString, IDecimalParser parser);
     }
 }

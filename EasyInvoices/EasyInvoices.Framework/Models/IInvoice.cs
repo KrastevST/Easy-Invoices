@@ -8,12 +8,12 @@
 
     public interface IInvoice
     {
-        string InvoiceNumber { get; }
+        string Number { get; }
         string Currency { get; }
         decimal? Days { get; }
         decimal? Rate { get; }
         decimal? Vat { get; }
-        DateTime InvoiceDate { get; }
+        DateTime DatePrinted { get; }
         DateTime DueDate { get; }
         decimal? Amount { get; }
         decimal? VatAmount { get; }

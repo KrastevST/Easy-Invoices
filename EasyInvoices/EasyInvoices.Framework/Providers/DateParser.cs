@@ -10,13 +10,13 @@
 
     public class DateParser : IDateParser
     {
-        public string ParseDateFromInvoice(IInvoice invoice)
+        public string ParseInvoiceDate(IInvoice invoice)
         {
-            string year = invoice.InvoiceNumber.Substring(0, 2);
-            string month = invoice.InvoiceNumber.Substring(2, 2);
-            string num = invoice.InvoiceNumber.Substring(4, 1);
+            string year = invoice.Number.Substring(0, 2);
+            string month = invoice.Number.Substring(2, 2);
+            string instance = invoice.Number.Substring(4, 1);
 
-            string result =  $"{month}-{year} {num}";
+            string result =  $"{month}-{year} {instance}";
 
             return result;
         }

@@ -1,4 +1,4 @@
-﻿namespace EasyInvoices.UI.HardCodedProviders
+﻿namespace EasyInvoices.UI.ReferenceDependantProviders
 {
     using EasyInvoices.Framework.Models;
     using EasyInvoices.Framework.Providers.Contracts;
@@ -7,7 +7,7 @@
     using System.Reflection;
     using Word = Microsoft.Office.Interop.Word;
 
-    public class WriterToWord : IWriterToWord
+    public class WriterToWord : IDocWriter
     {
         private const string numberPlaceholder = "<invnum>";
         private const string datePlaceholder = "<invdate>";
@@ -20,7 +20,7 @@
         private const string vatamntPlaceholder = "<vatamnt>";
         private const string totalPlaceholder = "<total>";
 
-        public void SaveInvoiceToWord(string invTemplatePath, object saveAs, IInvoice invoice)
+        public void SaveToWord(string invTemplatePath, object saveAs, IInvoice invoice)
         {
             Word.Application wordApp = new Word.Application();
             object missing = Missing.Value;
@@ -42,8 +42,8 @@
 
                 wordDoc.Activate();
 
-                this.FindAndReplace(wordApp, numberPlaceholder, invoice.InvoiceNumber);
-                this.FindAndReplace(wordApp, datePlaceholder, invoice.InvoiceDate);
+                this.FindAndReplace(wordApp, numberPlaceholder, invoice.Number);
+                this.FindAndReplace(wordApp, datePlaceholder, invoice.DatePrinted);
                 this.FindAndReplace(wordApp, dueDatePlaceholder, invoice.DueDate);
                 this.FindAndReplace(wordApp, currencyPlaceholder, invoice.Currency);
                 this.FindAndReplace(wordApp, daysPlaceholder, invoice.Days);
@@ -55,6 +55,7 @@
             }
             else
             {
+                //TODO - catch
                 throw new FileNotFoundException("File not found", invTemplatePath);
             }
 

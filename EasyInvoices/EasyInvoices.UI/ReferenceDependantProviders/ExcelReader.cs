@@ -1,4 +1,4 @@
-﻿namespace EasyInvoices.UI.HardCodedProviders
+﻿namespace EasyInvoices.UI.ReferenceDependantProviders
 {
     using System;
     using System.Text;
@@ -36,12 +36,12 @@
                 rowAsString = GetRow(currentRow);
             }
 
-            this.Close();
+            this.CloseFileConnection();
 
             return result.ToString();
         }
 
-        private void Close()
+        private void CloseFileConnection()
         {
             this.wb.Close();
             this.excel.Quit();
@@ -56,7 +56,7 @@
                 var cell = this.GetCell(i, j);
                 if (string.IsNullOrWhiteSpace(cell))
                 {
-                    // TODO fix this
+                    // TODO - fix this
                     if (j == 1 
                         && string.IsNullOrWhiteSpace(this.GetCell(i, j + 1))
                         && string.IsNullOrWhiteSpace(this.GetCell(i, j + 2))
@@ -66,9 +66,9 @@
                     {
                         return null;
                     }
-                    //TODO Fix this
-                    this.Close();
-                    throw new ArgumentNullException("Missing data");
+                    // TODO - catch this
+                    this.CloseFileConnection();
+                    throw new ArgumentException("row","row is incomplete");
                 }
                 result.Append(separatorChar + cell);
             }

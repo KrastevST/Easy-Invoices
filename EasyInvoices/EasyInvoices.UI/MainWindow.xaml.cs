@@ -1,7 +1,7 @@
 ﻿using EasyInvoices.Framework;
 using EasyInvoices.Framework.Providers;
 using EasyInvoices.Framework.Providers.Contracts;
-using EasyInvoices.UI.HardCodedProviders;
+using EasyInvoices.UI.ReferenceDependantProviders;
 using EasyInvoices.UI.Utils;
 using System;
 using System.Collections.Generic;
@@ -26,8 +26,9 @@ namespace EasyInvoices.UI
     /// </summary>
     public partial class MainWindow : Window
     {
+        // TODO - move to separate class
         private const char separator = '/';
-        private const string invoiceTemplatePath = "../../Invoice Template.doc";
+        private const string docTemplatePath = "../../Invoice Template.doc";
         private const string fileNameTemplate = "Invoice_{0}_{1}.doc";
         private const string defaultSheet = "1";
         private const string defaultRow = "2";
@@ -39,6 +40,7 @@ namespace EasyInvoices.UI
 
         private void SelectFileBtn_Click(object sender, RoutedEventArgs e)
         {
+            // TODO - enclose in using
             var dialog = new Microsoft.Win32.OpenFileDialog
             {
                 DefaultExt = ".xlsx",
@@ -65,12 +67,12 @@ namespace EasyInvoices.UI
         private void GenerateInvoicesBtn_Click(object sender, RoutedEventArgs e)
         {
             var validator = new InputValidator();
-            if (validator.IsValidInput(
+            if (!validator.IsValidInput(
                 selectFileValue.Text,
                 sheetValue.Text,
                 rowValue.Text,
                 selectDestinationValue.Text,
-                companyNameValue.Text) == false)
+                companyNameValue.Text))
             {
                 return;
             }
@@ -84,12 +86,12 @@ namespace EasyInvoices.UI
             string company = companyNameValue.Text;
 
             IInvoiceParser invParser = new InvoiceParser(separator);
-            IPrimitiveParser primParser = new PrimitiveParser();
+            IDecimalParser primParser = new DecimalParser();
             IDateParser dateParser = new DateParser();
             IReader reader = new ExcelReader(readPath, sheet, row, separator);
-            IWriterToWord writer = new WriterToWord();
+            IDocWriter writer = new WriterToWord();
 
-            var engine = new Engine(invParser, primParser, dateParser, reader, writer, invoiceTemplatePath, fullSavePath, company);
+            var engine = new Engine(invParser, primParser, dateParser, reader, writer, docTemplatePath, fullSavePath, company);
             engine.Start();
 
             MessageBox.Show("Invoices created successfully.");
@@ -104,9 +106,9 @@ namespace EasyInvoices.UI
         {
             string fullPath;
 
-            if (File.Exists(invoiceTemplatePath))
+            if (File.Exists(docTemplatePath))
             {
-                fullPath = System.IO.Path.GetFullPath(invoiceTemplatePath);
+                fullPath = System.IO.Path.GetFullPath(docTemplatePath);
                 System.Diagnostics.Process.Start(fullPath);
             }
             else
