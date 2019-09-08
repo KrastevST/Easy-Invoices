@@ -46,7 +46,7 @@
                 this.FindAndReplace(wordApp, datePlaceholder, invoice.DatePrinted);
                 this.FindAndReplace(wordApp, dueDatePlaceholder, invoice.DueDate);
                 this.FindAndReplace(wordApp, currencyPlaceholder, invoice.Currency);
-                this.FindAndReplace(wordApp, daysPlaceholder, invoice.Days.ToString("n2"));
+                this.FindAndReplace(wordApp, daysPlaceholder, invoice.Days.ToString("#.##"));
                 this.FindAndReplace(wordApp, ratePlaceholder, invoice.Rate.ToString("n2"));
                 this.FindAndReplace(wordApp, vatPlaceholder, invoice.Vat);
                 this.FindAndReplace(wordApp, amountPlaceholder, invoice.Amount.ToString("n2"));
