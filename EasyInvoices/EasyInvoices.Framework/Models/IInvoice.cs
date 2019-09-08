@@ -10,13 +10,13 @@
     {
         string Number { get; }
         string Currency { get; }
-        decimal? Days { get; }
-        decimal? Rate { get; }
-        decimal? Vat { get; }
+        decimal Days { get; }
+        decimal Rate { get; }
+        decimal Vat { get; }
         DateTime DatePrinted { get; }
         DateTime DueDate { get; }
-        decimal? Amount { get; }
-        decimal? VatAmount { get; }
-        decimal? Total { get; }
+        decimal Amount { get; }
+        decimal VatAmount { get; }
+        decimal Total { get; }
     }
 }

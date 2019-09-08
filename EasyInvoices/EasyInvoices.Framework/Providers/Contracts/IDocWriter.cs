@@ -4,6 +4,6 @@
 
     public interface IDocWriter
     {
-        void SaveToWord(string invTemplatePath, object saveAs, IInvoice invoice);
+        void SaveAsDoc(string invTemplatePath, object saveAs, IInvoice invoice);
     }
 }

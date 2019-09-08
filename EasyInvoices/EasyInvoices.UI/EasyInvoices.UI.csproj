@@ -56,7 +56,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ReferenceDependantProviders\WriterToWord.cs" />
+    <Compile Include="ReferenceDependantProviders\DocWriter.cs" />
     <Compile Include="Utils\InputValidator.cs" />
     <Compile Include="Utils\IValidator.cs" />
     <Page Include="MainWindow.xaml">

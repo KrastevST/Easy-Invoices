@@ -7,7 +7,7 @@
     using System.Reflection;
     using Word = Microsoft.Office.Interop.Word;
 
-    public class WriterToWord : IDocWriter
+    public class DocWriter : IDocWriter
     {
         private const string numberPlaceholder = "<invnum>";
         private const string datePlaceholder = "<invdate>";
@@ -20,7 +20,7 @@
         private const string vatamntPlaceholder = "<vatamnt>";
         private const string totalPlaceholder = "<total>";
 
-        public void SaveToWord(string invTemplatePath, object saveAs, IInvoice invoice)
+        public void SaveAsDoc(string invTemplatePath, object saveAs, IInvoice invoice)
         {
             Word.Application wordApp = new Word.Application();
             object missing = Missing.Value;
@@ -46,12 +46,12 @@
                 this.FindAndReplace(wordApp, datePlaceholder, invoice.DatePrinted);
                 this.FindAndReplace(wordApp, dueDatePlaceholder, invoice.DueDate);
                 this.FindAndReplace(wordApp, currencyPlaceholder, invoice.Currency);
-                this.FindAndReplace(wordApp, daysPlaceholder, invoice.Days);
-                this.FindAndReplace(wordApp, ratePlaceholder, invoice.Rate);
+                this.FindAndReplace(wordApp, daysPlaceholder, invoice.Days.ToString("n2"));
+                this.FindAndReplace(wordApp, ratePlaceholder, invoice.Rate.ToString("n2"));
                 this.FindAndReplace(wordApp, vatPlaceholder, invoice.Vat);
-                this.FindAndReplace(wordApp, amountPlaceholder, invoice.Amount);
-                this.FindAndReplace(wordApp, vatamntPlaceholder, invoice.VatAmount);
-                this.FindAndReplace(wordApp, totalPlaceholder, invoice.Total);
+                this.FindAndReplace(wordApp, amountPlaceholder, invoice.Amount.ToString("n2"));
+                this.FindAndReplace(wordApp, vatamntPlaceholder, invoice.VatAmount.ToString("n2"));
+                this.FindAndReplace(wordApp, totalPlaceholder, invoice.Total.ToString("n2"));
             }
             else
             {

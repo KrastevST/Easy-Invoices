@@ -17,13 +17,24 @@
         [TestCase("10566.01")]
         [TestCase("10 566.01")]
         [TestCase("10,566.01")]
-        public void ConvertStringToDecimalRegardlessOfFormat_WhenValidStringIsProvided(string input)
+        public void ReturnCorrectValueRegardlessOfFormat_WhenValidStringPassed(string input)
         {
             var parser = new DecimalParser();
 
             var result = parser.ParseDecimal(input);
 
             Assert.AreEqual(10566.01m, result);
+        }
+
+        [Test]
+        public void ReturnCorrectValue_WhenContentOfPassedStringIsWholeNumber()
+        {
+            var parser = new DecimalParser();
+            string input = "424";
+
+            var result = parser.ParseDecimal(input);
+
+            Assert.AreEqual(424, result);
         }
     }
 }

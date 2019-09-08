@@ -8,6 +8,6 @@
 
     public interface IDecimalParser
     {
-        decimal? ParseDecimal(string value);
+        decimal ParseDecimal(string value);
     }
 }

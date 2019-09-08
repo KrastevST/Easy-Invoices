@@ -8,7 +8,7 @@
     public class Engine
     {
         private readonly IInvoiceParser invParser;
-        private readonly IDecimalParser primParser;
+        private readonly IDecimalParser decParser;
         private readonly IDateParser dateParser;
         private readonly IReader reader;
         private readonly IDocWriter writer;
@@ -17,10 +17,10 @@
         private readonly string company;
 
         // TODO - check for nulls
-        public Engine(IInvoiceParser invParser, IDecimalParser primParser, IDateParser dateParser, IReader reader, IDocWriter writer, string docTemplatePath, string saveNameTemplate, string company)
+        public Engine(IInvoiceParser invParser, IDecimalParser decParser, IDateParser dateParser, IReader reader, IDocWriter writer, string docTemplatePath, string saveNameTemplate, string company)
         {
             this.invParser = invParser;
-            this.primParser = primParser;
+            this.decParser = decParser;
             this.reader = reader;
             this.writer = writer;
             this.DocTemplatePath = docTemplatePath;
@@ -36,11 +36,11 @@
 
             foreach (string invAsStr in splitInvoices)
             {
-                IInvoice parsedInv = this.invParser.ParseInvoice(invAsStr, this.primParser);
+                IInvoice parsedInv = this.invParser.ParseInvoice(invAsStr, this.decParser);
                 string date = dateParser.ParseInvoiceDate(parsedInv);
                 string savePath = string.Format(this.saveNameTemplate, this.company, date);
 
-                this.writer.SaveToWord(this.DocTemplatePath, savePath, parsedInv);
+                this.writer.SaveAsDoc(this.DocTemplatePath, savePath, parsedInv);
             }
         }
     }

@@ -89,7 +89,7 @@ namespace EasyInvoices.UI
             IDecimalParser primParser = new DecimalParser();
             IDateParser dateParser = new DateParser();
             IReader reader = new ExcelReader(readPath, sheet, row, separator);
-            IDocWriter writer = new WriterToWord();
+            IDocWriter writer = new DocWriter();
 
             var engine = new Engine(invParser, primParser, dateParser, reader, writer, docTemplatePath, fullSavePath, company);
             engine.Start();
