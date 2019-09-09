@@ -7,19 +7,19 @@
 
     public class DecimalParser : IDecimalParser
     {
-        public decimal ParseDecimal(string value)
+        public decimal ParseDecimal(string input)
         {
-            Guard.WhenArgument(value, "value").IsNullOrWhiteSpace().Throw();
+            Guard.WhenArgument(input, "value").IsNullOrWhiteSpace().Throw();
 
             if (decimal.TryParse(
-                    value.Replace(",", "").Replace(".", "").Replace(" ", ""),
+                    input.Replace(",", "").Replace(".", "").Replace(" ", ""),
                     NumberStyles.Number, CultureInfo.InvariantCulture,
                     out decimal result) == false)
             {
                 throw new ArgumentException("value is not a number", "value");
             }
 
-            var splitValue = value.Split( ',', '.' );
+            var splitValue = input.Split( ',', '.' );
             int numsAfterDelimiter = splitValue[splitValue.Length - 1].Length;
 
             if (splitValue.Length == 1)

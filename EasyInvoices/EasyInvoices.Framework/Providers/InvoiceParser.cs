@@ -22,7 +22,9 @@
 
             string separatorStr = "" + this.separatorCh + this.separatorCh;
             // Trim to avoid empty entries
-            var separatedInvoices = Regex.Split(fileAsString.Trim(this.separatorCh), separatorStr);
+            var separatedInvoices = Regex.Split(
+                        fileAsString.Trim(this.separatorCh),
+                        separatorStr);
 
             return separatedInvoices;
         }

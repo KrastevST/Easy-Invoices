@@ -19,11 +19,11 @@
             string expected = "05-21 3";
 
             var dateParser = new DateParser();
-            var invoice = new Mock<IInvoice>();
+            var invoiceMock = new Mock<IInvoice>();
 
-            invoice.Setup(i => i.Number).Returns("21053");
+            invoiceMock.Setup(i => i.Number).Returns("21053");
 
-            string output = dateParser.ParseInvoiceDate(invoice.Object);
+            string output = dateParser.ParseInvoiceDate(invoiceMock.Object);
 
             Assert.IsTrue(output.Equals(expected));
         }
@@ -32,8 +32,9 @@
         public void ThrowArgumentNullException_WhenPassedInvoiceIsNull()
         {
             var dateParser = new DateParser();
+            IInvoice invoice = null;
 
-            Assert.Throws<ArgumentNullException>(() => dateParser.ParseInvoiceDate(null));
+            Assert.Throws<ArgumentNullException>(() => dateParser.ParseInvoiceDate(invoice));
         }
     }
 }

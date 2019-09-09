@@ -41,8 +41,9 @@
         public void ThrowArgumentNullException_WhenPassedValueIsNull()
         {
             var parser = new DecimalParser();
+            string input = null;
 
-            Assert.Throws<ArgumentNullException>(() => parser.ParseDecimal(null));
+            Assert.Throws<ArgumentNullException>(() => parser.ParseDecimal(input));
         }
 
         [TestCase(" ")]
