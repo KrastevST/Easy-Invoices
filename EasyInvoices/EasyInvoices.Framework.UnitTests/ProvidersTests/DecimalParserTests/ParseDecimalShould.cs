@@ -36,5 +36,22 @@
 
             Assert.AreEqual(424, result);
         }
+
+        [Test]
+        public void ThrowArgumentNullException_WhenPassedValueIsNull()
+        {
+            var parser = new DecimalParser();
+
+            Assert.Throws<ArgumentNullException>(() => parser.ParseDecimal(null));
+        }
+
+        [TestCase(" ")]
+        [TestCase("")]
+        public void ThrowArgumentException_WhenPassedValueIsWhiteSpaceOrEmptyString(string input)
+        {
+            var parser = new DecimalParser();
+
+            Assert.Throws<ArgumentException>(() => parser.ParseDecimal(input));
+        }
     }
 }

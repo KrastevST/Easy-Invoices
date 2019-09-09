@@ -27,5 +27,13 @@
 
             Assert.IsTrue(output.Equals(expected));
         }
+
+        [Test]
+        public void ThrowArgumentNullException_WhenPassedInvoiceIsNull()
+        {
+            var dateParser = new DateParser();
+
+            Assert.Throws<ArgumentNullException>(() => dateParser.ParseInvoiceDate(null));
+        }
     }
 }

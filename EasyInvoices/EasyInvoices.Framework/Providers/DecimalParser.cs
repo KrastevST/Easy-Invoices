@@ -12,8 +12,9 @@
             Guard.WhenArgument(value, "value").IsNullOrWhiteSpace().Throw();
 
             if (decimal.TryParse(
-                value.Replace(",", "").Replace(".", "").Replace(" ", ""), NumberStyles.Number, CultureInfo.InvariantCulture,
-                out decimal result) == false)
+                    value.Replace(",", "").Replace(".", "").Replace(" ", ""),
+                    NumberStyles.Number, CultureInfo.InvariantCulture,
+                    out decimal result) == false)
             {
                 throw new ArgumentException("value is not a number", "value");
             }

@@ -11,6 +11,18 @@
     [TestFixture]
     public class Constructor_Should
     {
+        [Test]
+        public void NotThrowException_WhenValidArgumentsPassed()
+        {
+            string invoiceNumber = "12345";
+            decimal days = 1;
+            decimal rate = 1;
+            string currency = "EUR";
+            decimal vatPercent = 1;
+
+            Assert.DoesNotThrow(() => new Invoice(invoiceNumber, days, rate, currency, vatPercent));
+        }
+
         [TestCase(null)]
         public void ThrowArgumentNullException_WhenPassedInvoiceNumberIsNull(string input)
         {
