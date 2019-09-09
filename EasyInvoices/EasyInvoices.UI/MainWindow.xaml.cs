@@ -26,7 +26,6 @@ namespace EasyInvoices.UI
     /// </summary>
     public partial class MainWindow : Window
     {
-        // TODO - move to separate class
         private const char separator = '/';
         private const string docTemplatePath = "../../Invoice Template.doc";
         private const string fileNameTemplate = "Invoice_{0}_{1}.doc";
@@ -40,7 +39,6 @@ namespace EasyInvoices.UI
 
         private void SelectFileBtn_Click(object sender, RoutedEventArgs e)
         {
-            // TODO - enclose in using
             var dialog = new Microsoft.Win32.OpenFileDialog
             {
                 DefaultExt = ".xlsx",
@@ -67,12 +65,9 @@ namespace EasyInvoices.UI
         private void GenerateInvoicesBtn_Click(object sender, RoutedEventArgs e)
         {
             var validator = new InputValidator();
-            if (!validator.IsValidInput(
-                selectFileValue.Text,
-                sheetValue.Text,
-                rowValue.Text,
-                selectDestinationValue.Text,
-                companyNameValue.Text))
+            if (validator.IsValidInput(selectFileValue.Text, sheetValue.Text,
+                        rowValue.Text, selectDestinationValue.Text,
+                        companyNameValue.Text) == false)
             {
                 return;
             }
@@ -91,15 +86,31 @@ namespace EasyInvoices.UI
             IReader reader = new ExcelReader(readPath, sheet, row, separator);
             IDocWriter writer = new DocWriter();
 
-            var engine = new Engine(invParser, primParser, dateParser, reader, writer, docTemplatePath, fullSavePath, company);
-            engine.Start();
+            try
+            {
+                var engine = new Engine(invParser, primParser, dateParser, reader, writer, docTemplatePath, fullSavePath, company);
+                engine.Start();
+            }
+            catch (ArgumentNullException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (ArgumentOutOfRangeException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (FileNotFoundException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
             MessageBox.Show("Invoices created successfully.");
 
-            selectFileValue.Text = string.Empty;
-            selectDestinationValue.Text = string.Empty;
-            sheetValue.Text = defaultSheet;
-            rowValue.Text = defaultRow;
+            this.ResetForm();
         }
 
         private void EditTemplateBtn_Click(object sender, RoutedEventArgs e)
@@ -116,6 +127,14 @@ namespace EasyInvoices.UI
                 MessageBox.Show("Template file could not be found.");
             }
 
+        }
+
+        private void ResetForm()
+        {
+            selectFileValue.Text = string.Empty;
+            selectDestinationValue.Text = string.Empty;
+            sheetValue.Text = defaultSheet;
+            rowValue.Text = defaultRow;
         }
     }
 }

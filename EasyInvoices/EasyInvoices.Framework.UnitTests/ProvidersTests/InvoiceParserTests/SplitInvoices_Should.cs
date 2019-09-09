@@ -19,15 +19,14 @@
         public void SplitTheInputStringIntoIndividualInvoiceStrings_WhenTheCorrectSeparatingCharIsProvided(string input)
         {
             char separator = '/';
-            // Modify input for quick testing
-            //(so different values of separator still work)
-            string modifiedInput = input.Replace('/', separator);
+            // uncomment and change separator for quick testing
+            //input = input.Replace('/', separator);
 
             var individualStrings = new string[] { $"str{separator}1", $"str{separator}2", $"str{separator}3"};
 
             var invoiceParser = new InvoiceParser(separator);
 
-            var result = invoiceParser.SplitInvoices(modifiedInput);
+            var result = invoiceParser.SplitInvoices(input);
 
             Assert.IsTrue(individualStrings[0].Equals(result[0]) &&
                           individualStrings[1].Equals(result[1]) &&

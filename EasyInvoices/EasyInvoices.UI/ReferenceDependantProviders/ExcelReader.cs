@@ -2,6 +2,7 @@
 {
     using System;
     using System.Text;
+    using Bytes2you.Validation;
     using EasyInvoices.Framework.Providers.Contracts;
     using Microsoft.Office.Interop.Excel;
     using _Excel = Microsoft.Office.Interop.Excel;
@@ -16,6 +17,10 @@
 
         public ExcelReader(string readFilePath, int sheet, int startingRow, char separatorCh)
         {
+            Guard.WhenArgument(readFilePath, "readFilePath").IsNullOrWhiteSpace().Throw();
+            Guard.WhenArgument(sheet, "sheet").IsLessThan(1).Throw();
+            Guard.WhenArgument(startingRow, "startingRow").IsLessThan(1).Throw();
+
             this.excel = new _Excel.Application();
             this.wb = excel.Workbooks.Open(readFilePath);
             this.ws = (Worksheet)wb.Worksheets[sheet];
@@ -28,12 +33,12 @@
             int currentRow = this.startingRow;
             var result = new StringBuilder();
 
-            var rowAsString = this.GetRow(currentRow);
+            var rowAsString = this.GetRowAsString(currentRow);
             while (rowAsString != null)
             {
                 result.Append(separatorChar + rowAsString);
                 currentRow++;
-                rowAsString = GetRow(currentRow);
+                rowAsString = GetRowAsString(currentRow);
             }
 
             this.CloseFileConnection();
@@ -48,35 +53,37 @@
             System.Runtime.InteropServices.Marshal.ReleaseComObject(excel);
         }
 
-        private string GetRow(int row)
+        private string GetRowAsString(int row)
         {
+            Guard.WhenArgument(row, "row").IsLessThan(1).Throw();
+
             var result = new StringBuilder();
             for (int i = row, j = 1; j <= 5; j++)
             {
-                var cell = this.GetCell(i, j);
+                string cell = this.ReadCell(i, j);
+
                 if (string.IsNullOrWhiteSpace(cell))
                 {
-                    // TODO - fix this
                     if (j == 1 
-                        && string.IsNullOrWhiteSpace(this.GetCell(i, j + 1))
-                        && string.IsNullOrWhiteSpace(this.GetCell(i, j + 2))
-                        && string.IsNullOrWhiteSpace(this.GetCell(i, j + 3))
-                        && string.IsNullOrWhiteSpace(this.GetCell(i, j + 4))
+                        && string.IsNullOrWhiteSpace(this.ReadCell(i, j + 1))
+                        && string.IsNullOrWhiteSpace(this.ReadCell(i, j + 2))
+                        && string.IsNullOrWhiteSpace(this.ReadCell(i, j + 3))
+                        && string.IsNullOrWhiteSpace(this.ReadCell(i, j + 4))
                         )
                     {
                         return null;
                     }
-                    // TODO - catch this
                     this.CloseFileConnection();
-                    throw new ArgumentException("row","row is incomplete");
+                    throw new ArgumentNullException("Data is incomplete", "row");
                 }
+
                 result.Append(separatorChar + cell);
             }
 
             return result.ToString();
         }
 
-        private string GetCell(int i, int j)
+        private string ReadCell(int i, int j)
         {
             if (ws.Cells[i, j].Value2 != null)
             {

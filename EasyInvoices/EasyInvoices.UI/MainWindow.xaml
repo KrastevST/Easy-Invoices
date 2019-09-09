@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EasyInvoices.UI"
+        WindowStartupLocation="CenterScreen"
         mc:Ignorable="d" FontSize="16" FontFamily="Segoe UI"
         Title="Easy Invoices" Height="400" Width="500">
     <Grid>

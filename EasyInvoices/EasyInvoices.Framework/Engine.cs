@@ -1,5 +1,6 @@
 ﻿namespace EasyInvoices.Framework
 {
+    using Bytes2you.Validation;
     using EasyInvoices.Framework.Models;
     using EasyInvoices.Framework.Providers;
     using EasyInvoices.Framework.Providers.Contracts;
@@ -16,9 +17,17 @@
         private readonly string saveNameTemplate;
         private readonly string company;
 
-        // TODO - check for nulls
         public Engine(IInvoiceParser invParser, IDecimalParser decParser, IDateParser dateParser, IReader reader, IDocWriter writer, string docTemplatePath, string saveNameTemplate, string company)
         {
+            Guard.WhenArgument(invParser, "invParser").IsNull().Throw();
+            Guard.WhenArgument(decParser, "decParser").IsNull().Throw();
+            Guard.WhenArgument(dateParser, "dateParser").IsNull().Throw();
+            Guard.WhenArgument(reader, "reader").IsNull().Throw();
+            Guard.WhenArgument(writer, "writer").IsNull().Throw();
+            Guard.WhenArgument(docTemplatePath, "docTemplatePath").IsNotNullOrWhiteSpace().Throw();
+            Guard.WhenArgument(saveNameTemplate, "saveNameTemplate").IsNotNullOrWhiteSpace().Throw();
+            Guard.WhenArgument(company, "company").IsNotNullOrWhiteSpace().Throw();
+
             this.invParser = invParser;
             this.decParser = decParser;
             this.reader = reader;

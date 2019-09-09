@@ -1,5 +1,6 @@
 ﻿namespace EasyInvoices.Framework.Providers
 {
+    using Bytes2you.Validation;
     using EasyInvoices.Framework.Providers.Contracts;
     using System;
     using System.Globalization;
@@ -8,13 +9,13 @@
     {
         public decimal ParseDecimal(string value)
         {
+            Guard.WhenArgument(value, "value").IsNullOrWhiteSpace().Throw();
 
-            if (!decimal.TryParse(
+            if (decimal.TryParse(
                 value.Replace(",", "").Replace(".", "").Replace(" ", ""), NumberStyles.Number, CultureInfo.InvariantCulture,
-                out decimal result))
+                out decimal result) == false)
             {
-                // TODO - fix this
-                throw new ArgumentNullException();
+                throw new ArgumentException("value is not a number", "value");
             }
 
             var splitValue = value.Split( ',', '.' );

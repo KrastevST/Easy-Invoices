@@ -1,5 +1,6 @@
 ﻿namespace EasyInvoices.UI.ReferenceDependantProviders
 {
+    using Bytes2you.Validation;
     using EasyInvoices.Framework.Models;
     using EasyInvoices.Framework.Providers.Contracts;
     using System;
@@ -22,6 +23,10 @@
 
         public void SaveAsDoc(string invTemplatePath, object saveAs, IInvoice invoice)
         {
+            Guard.WhenArgument(invTemplatePath, "invTemplatePath").IsNullOrWhiteSpace().Throw();
+            Guard.WhenArgument(saveAs, "saveAs").IsNull().Throw();
+            Guard.WhenArgument(invoice, "invoice").IsNull().Throw();
+
             Word.Application wordApp = new Word.Application();
             object missing = Missing.Value;
             Word.Document wordDoc = null;
@@ -43,8 +48,8 @@
                 wordDoc.Activate();
 
                 this.FindAndReplace(wordApp, numberPlaceholder, invoice.Number);
-                this.FindAndReplace(wordApp, datePlaceholder, invoice.DatePrinted);
-                this.FindAndReplace(wordApp, dueDatePlaceholder, invoice.DueDate);
+                this.FindAndReplace(wordApp, datePlaceholder, invoice.DatePrinted.ToString(@"dd-MM-yyyy"));
+                this.FindAndReplace(wordApp, dueDatePlaceholder, invoice.DueDate.ToString(@"dd-MM-yyyy"));
                 this.FindAndReplace(wordApp, currencyPlaceholder, invoice.Currency);
                 this.FindAndReplace(wordApp, daysPlaceholder, invoice.Days.ToString("#.##"));
                 this.FindAndReplace(wordApp, ratePlaceholder, invoice.Rate.ToString("n2"));
@@ -55,7 +60,6 @@
             }
             else
             {
-                //TODO - catch
                 throw new FileNotFoundException("File not found", invTemplatePath);
             }
 
@@ -71,6 +75,10 @@
 
         private void FindAndReplace(Word.Application wordApp, object toFindText, object replaceWithText)
         {
+            Guard.WhenArgument(wordApp, "wordApp").IsNull().Throw();
+            Guard.WhenArgument(toFindText, "toFindText").IsNull().Throw();
+            Guard.WhenArgument(replaceWithText, "replaceWithText").IsNull().Throw();
+
             object matchCase = true;
             object matchWholeWord = true;
             object matchWildCards = false;
