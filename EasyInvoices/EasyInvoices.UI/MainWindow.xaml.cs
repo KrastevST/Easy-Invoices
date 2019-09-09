@@ -90,6 +90,8 @@ namespace EasyInvoices.UI
             {
                 var engine = new Engine(invParser, primParser, dateParser, reader, writer, docTemplatePath, fullSavePath, company);
                 engine.Start();
+                MessageBox.Show("Invoices created successfully.");
+                this.ResetForm();
             }
             catch (ArgumentNullException ex)
             {
@@ -107,10 +109,6 @@ namespace EasyInvoices.UI
             {
                 MessageBox.Show(ex.Message);
             }
-
-            MessageBox.Show("Invoices created successfully.");
-
-            this.ResetForm();
         }
 
         private void EditTemplateBtn_Click(object sender, RoutedEventArgs e)

@@ -43,7 +43,7 @@
             Assert.AreEqual(curr, parsedInv.Currency);
             Assert.AreEqual(days, parsedInv.Days);
             Assert.AreEqual(rate, parsedInv.Rate);
-            Assert.AreEqual(vat * 100, parsedInv.Vat);
+            Assert.AreEqual(vat * 100, parsedInv.VatPercent);
         }
     }
 }

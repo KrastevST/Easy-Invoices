@@ -24,9 +24,9 @@
             Guard.WhenArgument(dateParser, "dateParser").IsNull().Throw();
             Guard.WhenArgument(reader, "reader").IsNull().Throw();
             Guard.WhenArgument(writer, "writer").IsNull().Throw();
-            Guard.WhenArgument(docTemplatePath, "docTemplatePath").IsNotNullOrWhiteSpace().Throw();
-            Guard.WhenArgument(saveNameTemplate, "saveNameTemplate").IsNotNullOrWhiteSpace().Throw();
-            Guard.WhenArgument(company, "company").IsNotNullOrWhiteSpace().Throw();
+            Guard.WhenArgument(docTemplatePath, "docTemplatePath").IsNullOrWhiteSpace().Throw();
+            Guard.WhenArgument(saveNameTemplate, "saveNameTemplate").IsNullOrWhiteSpace().Throw();
+            Guard.WhenArgument(company, "company").IsNullOrWhiteSpace().Throw();
 
             this.invParser = invParser;
             this.decParser = decParser;
