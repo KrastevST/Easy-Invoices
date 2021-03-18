@@ -1,15 +1,11 @@
-﻿namespace EasyInvoices.Framework.UnitTests.ProvidersTests.DateParserTests
-{
-    using EasyInvoices.Framework.Models;
-    using EasyInvoices.Framework.Providers;
-    using Moq;
-    using NUnit.Framework;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
+﻿using EasyInvoices.Framework.Models;
+using EasyInvoices.Framework.Providers;
+using Moq;
+using NUnit.Framework;
+using System;
 
+namespace EasyInvoices.Framework.UnitTests.ProvidersTests.DateParserTests
+{
     [TestFixture]
     public class ParseInvoiceDate_Should
     {

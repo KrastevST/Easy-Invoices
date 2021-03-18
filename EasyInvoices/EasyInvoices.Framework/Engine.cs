@@ -1,11 +1,10 @@
-﻿namespace EasyInvoices.Framework
-{
-    using Bytes2you.Validation;
-    using EasyInvoices.Framework.Models;
-    using EasyInvoices.Framework.Providers;
-    using EasyInvoices.Framework.Providers.Contracts;
-    using System.Collections.Generic;
+﻿using Bytes2you.Validation;
+using EasyInvoices.Framework.Models;
+using EasyInvoices.Framework.Providers.Contracts;
+using System.Collections.Generic;
 
+namespace EasyInvoices.Framework
+{
     public class Engine
     {
         private readonly IInvoiceParser invParser;

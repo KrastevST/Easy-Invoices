@@ -1,13 +1,12 @@
-﻿namespace EasyInvoices.UI.ReferenceDependantProviders
-{
-    using Bytes2you.Validation;
-    using EasyInvoices.Framework.Models;
-    using EasyInvoices.Framework.Providers.Contracts;
-    using System;
-    using System.IO;
-    using System.Reflection;
-    using Word = Microsoft.Office.Interop.Word;
+﻿using Bytes2you.Validation;
+using EasyInvoices.Framework.Models;
+using EasyInvoices.Framework.Providers.Contracts;
+using System.IO;
+using System.Reflection;
+using Word = Microsoft.Office.Interop.Word;
 
+namespace EasyInvoices.UI.ReferenceDependantProviders
+{
     public class DocWriter : IDocWriter
     {
         private const string numberPlaceholder = "<invnum>";

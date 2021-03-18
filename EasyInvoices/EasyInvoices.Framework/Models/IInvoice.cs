@@ -1,11 +1,7 @@
-﻿namespace EasyInvoices.Framework.Models
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
+﻿using System;
 
+namespace EasyInvoices.Framework.Models
+{
     public interface IInvoice
     {
         string Number { get; }

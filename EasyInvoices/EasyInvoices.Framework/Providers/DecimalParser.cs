@@ -1,10 +1,10 @@
-﻿namespace EasyInvoices.Framework.Providers
-{
-    using Bytes2you.Validation;
-    using EasyInvoices.Framework.Providers.Contracts;
-    using System;
-    using System.Globalization;
+﻿using Bytes2you.Validation;
+using EasyInvoices.Framework.Providers.Contracts;
+using System;
+using System.Globalization;
 
+namespace EasyInvoices.Framework.Providers
+{
     public class DecimalParser : IDecimalParser
     {
         public decimal ParseDecimal(string input)

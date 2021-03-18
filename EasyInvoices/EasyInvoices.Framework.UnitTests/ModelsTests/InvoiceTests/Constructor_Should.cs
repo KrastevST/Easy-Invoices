@@ -1,13 +1,9 @@
-﻿namespace EasyInvoices.Framework.UnitTests.ModelsTests.InvoiceTests
-{
-    using EasyInvoices.Framework.Models;
-    using NUnit.Framework;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
+﻿using EasyInvoices.Framework.Models;
+using NUnit.Framework;
+using System;
 
+namespace EasyInvoices.Framework.UnitTests.ModelsTests.InvoiceTests
+{
     [TestFixture]
     public class Constructor_Should
     {

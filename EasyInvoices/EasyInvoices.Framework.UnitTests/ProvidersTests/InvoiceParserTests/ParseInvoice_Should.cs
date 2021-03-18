@@ -1,15 +1,12 @@
-﻿namespace EasyInvoices.Framework.UnitTests.ProvidersTests.InvoiceParserTests
-{
-    using EasyInvoices.Framework.Providers;
-    using EasyInvoices.Framework.Providers.Contracts;
-    using Moq;
-    using NUnit.Framework;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
+﻿using EasyInvoices.Framework.Providers;
+using EasyInvoices.Framework.Providers.Contracts;
+using Moq;
+using NUnit.Framework;
+using System;
+using System.Collections.Generic;
 
+namespace EasyInvoices.Framework.UnitTests.ProvidersTests.InvoiceParserTests
+{
     [TestFixture]
     public class ParseInvoice_Should
     {

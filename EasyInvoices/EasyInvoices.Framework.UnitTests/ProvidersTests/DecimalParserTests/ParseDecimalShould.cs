@@ -1,13 +1,9 @@
-﻿namespace EasyInvoices.Framework.UnitTests.ProvidersTests.DecimalParserTests
-{
-    using EasyInvoices.Framework.Providers;
-    using NUnit.Framework;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
+﻿using EasyInvoices.Framework.Providers;
+using NUnit.Framework;
+using System;
 
+namespace EasyInvoices.Framework.UnitTests.ProvidersTests.DecimalParserTests
+{
     [TestFixture]
     public class ParseDecimalShould
     {

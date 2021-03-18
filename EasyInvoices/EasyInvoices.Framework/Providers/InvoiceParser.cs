@@ -1,12 +1,12 @@
-﻿namespace EasyInvoices.Framework.Providers
-{
-    using Bytes2you.Validation;
-    using EasyInvoices.Framework.Models;
-    using EasyInvoices.Framework.Providers.Contracts;
-    using System;
-    using System.Collections.Generic;
-    using System.Text.RegularExpressions;
+﻿using Bytes2you.Validation;
+using EasyInvoices.Framework.Models;
+using EasyInvoices.Framework.Providers.Contracts;
+using System;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
+namespace EasyInvoices.Framework.Providers
+{
     public class InvoiceParser : IInvoiceParser
     {
         private readonly char separatorCh;
@@ -21,6 +21,7 @@
             Guard.WhenArgument(fileAsString, "fileAsString").IsNullOrWhiteSpace().Throw();
 
             string separatorStr = "" + this.separatorCh + this.separatorCh;
+
             // Trim to avoid empty entries
             var separatedInvoices = Regex.Split(
                         fileAsString.Trim(this.separatorCh),

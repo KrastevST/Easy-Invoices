@@ -1,12 +1,8 @@
-﻿namespace EasyInvoices.Framework.Providers.Contracts
-{
-    using EasyInvoices.Framework.Models;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
+﻿using EasyInvoices.Framework.Models;
+using System.Collections.Generic;
 
+namespace EasyInvoices.Framework.Providers.Contracts
+{
     public interface IInvoiceParser
     {
         IList<string> SplitInvoices(string fileAsString);

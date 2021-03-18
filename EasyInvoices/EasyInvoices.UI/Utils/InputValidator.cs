@@ -1,14 +1,7 @@
-﻿namespace EasyInvoices.UI.Utils
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Text.RegularExpressions;
-    using System.Threading.Tasks;
-    using System.Windows;
-    using EasyInvoices.UI;
+﻿using System.Windows;
 
+namespace EasyInvoices.UI.Utils
+{
     public class InputValidator : IValidator
     {
         public bool IsValidInput( string readPath , string sheet, string row, string savepath, string company)

@@ -1,12 +1,12 @@
-﻿namespace EasyInvoices.UI.ReferenceDependantProviders
-{
-    using System;
-    using System.Text;
-    using Bytes2you.Validation;
-    using EasyInvoices.Framework.Providers.Contracts;
-    using Microsoft.Office.Interop.Excel;
-    using _Excel = Microsoft.Office.Interop.Excel;
+﻿using System;
+using System.Text;
+using Bytes2you.Validation;
+using EasyInvoices.Framework.Providers.Contracts;
+using Microsoft.Office.Interop.Excel;
+using _Excel = Microsoft.Office.Interop.Excel;
 
+namespace EasyInvoices.UI.ReferenceDependantProviders
+{
     public class ExcelReader : IReader
     {
         private readonly char separatorChar;

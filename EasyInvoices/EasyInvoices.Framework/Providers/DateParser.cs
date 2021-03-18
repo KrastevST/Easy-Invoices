@@ -1,14 +1,9 @@
-﻿namespace EasyInvoices.Framework.Providers
-{
-    using Bytes2you.Validation;
-    using EasyInvoices.Framework.Models;
-    using EasyInvoices.Framework.Providers.Contracts;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
+﻿using Bytes2you.Validation;
+using EasyInvoices.Framework.Models;
+using EasyInvoices.Framework.Providers.Contracts;
 
+namespace EasyInvoices.Framework.Providers
+{
     public class DateParser : IDateParser
     {
         public string ParseInvoiceDate(IInvoice invoice)
